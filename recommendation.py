@@ -1,5 +1,7 @@
 df = spark.read.format("delta").load(f"dbfs:/user/hive/warehouse/rating_time_genre")
 fav_movies = []
+dbutils.widgets.text("inputUserId", "", "")
+inputUserId = dbutils.widgets.get("inputUserId")
 print(inputUserId)
 fav = df.filter((col("userId") == inputUserId))
 for genre in distinct_values:
